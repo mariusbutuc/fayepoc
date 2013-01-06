@@ -9,7 +9,6 @@ gem 'thor', '= 0.14.6'
 gem 'minitest'
 
 gem 'jquery-rails'
-gem 'rhc'
 gem 'pg'
 gem 'thin'
 gem 'faye'
@@ -18,4 +17,8 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier',     '>= 1.0.3'
+end
+
+group :development do
+  gem 'rhc'
 end
