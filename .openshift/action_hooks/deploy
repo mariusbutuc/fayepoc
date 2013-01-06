@@ -6,11 +6,11 @@
 
 set -e
 
-if [ -z "$OPENSHIFT_MYSQL_DB_HOST" ]
+if [ -z "$OPENSHIFT_POSTGRESQL_DB_HOST" ]
 then
     echo 1>&2
-    echo "Could not find mysql database.  Please run:" 1>&2
-    echo "rhc app cartridge add -a $OPENSHIFT_APP_NAME -c mysql-5.1" 1>&2
+    echo "Could not find pg database.  Please run:" 1>&2
+    echo "rhc app cartridge add -a $OPENSHIFT_APP_NAME -c postgresql-8.4" 1>&2
     echo "then make a sample commit (add whitespace somewhere) and re-push" 1>&2
     echo 1>&2
 fi
@@ -24,9 +24,9 @@ while [ $RETRY -gt 0 ] ; do
     done
 
     #check for db
-    if [ -n "$OPENSHIFT_MYSQL_DB_HOST" ]
+    if [ -n "$OPENSHIFT_POSTGRESQL_DB_HOST" ]
     then
-        echo "Database server found at $OPENSHIFT_MYSQL_DB_HOST. initializing..."
+        echo "Database server found at $OPENSHIFT_POSTGRESQL_DB_HOST. initializing..."
         sleep 5
         break
     fi
@@ -35,7 +35,7 @@ while [ $RETRY -gt 0 ] ; do
     RETRY=$(( $RETRY - 1 ))
 done
 
-if [ -z "$OPENSHIFT_MYSQL_DB_HOST" ]
+if [ -z "$OPENSHIFT_POSTGRESQL_DB_HOST" ]
 then
     exit 5
 fi
